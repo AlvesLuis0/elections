@@ -1,4 +1,4 @@
-<%= form_with(model: election) do |form| %>
+<%= form_with(model: election, data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }) do |form| %>
   <%= render "shared/error", resource: election %>
 
   <div>
@@ -11,7 +11,20 @@
     <%= form.textarea :description %>
   </div>
 
+  <template data-nested-form-target="template">
+    <%= form.fields_for :candidates, Candidate.new, child_index: 'NEW_RECORD' do |candidate_fields| %>
+      <%= render "candidates/form", form: candidate_fields %>
+    <% end %>
+  </template>
+
+  <%= form.fields_for :candidates do |candidate_fields| %>
+    <%= render "candidates/form", form: candidate_fields %>
+  <% end %>
+
+  <div data-nested-form-target="target"></div>
+
   <div>
+    <button type="button" data-action="nested-form#add">Add candidate</button>
     <%= form.submit %>
   </div>
 <% end %>

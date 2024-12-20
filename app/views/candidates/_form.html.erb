@@ -1,0 +1,7 @@
+<div
+  class="nested-form-wrapper"
+  data-new-record="<%= form.object.new_record? %>"
+>
+  <%= form.text_field :name, placeholder: "Candidate" %>
+  <button type="button" data-action="nested-form#remove">Remove</button>
+</div>

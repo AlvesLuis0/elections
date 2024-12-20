@@ -8,6 +8,7 @@ class ElectionsController < ApplicationController
   # GET /elections/new
   def new
     @election = Election.new
+    @election.candidates.build
   end
 
   # POST /elections
@@ -30,6 +31,6 @@ class ElectionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def election_params
-      params.expect(election: [ :title, :description ])
+      params.expect(election: [ :title, :description, candidates_attributes: [ [ :name ] ] ])
     end
 end
