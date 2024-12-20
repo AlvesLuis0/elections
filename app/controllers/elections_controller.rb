@@ -25,6 +25,7 @@ class ElectionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_election
       @election = Election.find(params.expect(:id))
+      @candidates = @election.candidates
     end
 
     # Only allow a list of trusted parameters through.
