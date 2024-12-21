@@ -1,2 +1,4 @@
+<% content_for :title, @election.title %>
+
 <%= render @election %>
-<%= render @candidates %>
+<%= render "votes/form", { vote: Vote.new, candidates: @candidates } %>

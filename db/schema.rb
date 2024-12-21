@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_20_204039) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_20_222825) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -28,5 +28,12 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_20_204039) do
     t.index ["id"], name: "index_elections_on_id"
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.uuid "candidate_id"
+    t.index ["candidate_id"], name: "index_votes_on_candidate_id"
+    t.index ["id"], name: "index_votes_on_id"
+  end
+
   add_foreign_key "candidates", "elections"
+  add_foreign_key "votes", "candidates"
 end
