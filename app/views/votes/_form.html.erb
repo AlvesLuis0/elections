@@ -1,7 +1,7 @@
-<%= form_with(model: vote) do |form| %>
+<%= form_with(model: [@election, vote]) do |form| %>
   <%= render "shared/error", resource: vote %>
 
-  <%= form.collection_radio_buttons :candidate_id, candidates, :id, :name, checked: candidates.first.id do |button| %>
+  <%= form.collection_radio_buttons :candidate_id, candidates, :id, :name do |button| %>
     <div>
       <%= button.radio_button %>
       <%= button.label %>

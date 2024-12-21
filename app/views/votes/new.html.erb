@@ -1,6 +1,7 @@
 <% content_for :title, @election.title %>
 
 <%= render @election %>
-<%= render "votes/form", { vote: Vote.new, candidates: @candidates } %>
+<%= render "form", { vote: @vote, candidates: @candidates } %>
 
 <%= link_to "See results", results_elections_path(@election) %>
+<%= link_to "New election", new_election_path %>

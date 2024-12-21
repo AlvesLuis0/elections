@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  resources :elections, only: [ :show, :new, :create ] do
+  resources :elections, only: [ :new, :create ] do
     collection do
       get "/:id/results", action: :results, as: :results
     end
+
+    resources :votes, only: [ :new, :create ]
   end
-  resources :votes, only: [ :create ]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
