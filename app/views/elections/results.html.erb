@@ -4,7 +4,7 @@
 
 <p>
   Total votes:
-  <%= Vote.count(@election) %>
+  <%= @election.votes_count %>
 </p>
 
 <%= render @candidates %>

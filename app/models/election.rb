@@ -6,6 +6,10 @@ class Election < ApplicationRecord
   validate :must_have_at_least_two_candidates
   validate :must_have_unique_candidates
 
+  def votes_count
+    Vote.joins(:candidate).where(candidate: { election_id: id }).count
+  end
+
 private
   def must_have_at_least_two_candidates
     if candidates.size < 2
