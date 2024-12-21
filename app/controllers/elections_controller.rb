@@ -1,9 +1,8 @@
 class ElectionsController < ApplicationController
-  before_action :set_election, only: %i[ show ]
+  before_action :set_election, only: %i[ show results ]
 
   # GET /elections/:uuid
   def show
-    @candidates = @election.candidates
   end
 
   # GET /elections/new
@@ -23,10 +22,15 @@ class ElectionsController < ApplicationController
     end
   end
 
+  # GET /elections/:uuid/results
+  def results
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_election
       @election = Election.find(params.expect(:id))
+      @candidates = @election.candidates
     end
 
     # Only allow a list of trusted parameters through.

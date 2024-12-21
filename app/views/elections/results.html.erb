@@ -1,0 +1,9 @@
+<% content_for :title, @election.title + " results" %>
+
+<%= render @election %>
+<p>
+  Total votes:
+  <%= Vote.count(@election) %>
+</p>
+<%= render @candidates %>
+<%= link_to "Vote again", @election %>

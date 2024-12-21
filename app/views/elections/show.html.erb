@@ -2,3 +2,5 @@
 
 <%= render @election %>
 <%= render "votes/form", { vote: Vote.new, candidates: @candidates } %>
+
+<%= link_to "See results", results_elections_path(@election) %>

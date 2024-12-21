@@ -2,11 +2,12 @@ class VotesController < ApplicationController
   # POST /votes
   def create
     @vote = Vote.new(vote_params)
+    @election = @vote.candidate.election
 
     if @vote.save
-      redirect_to root_path, notice: "Vote was successfully registered."
+      redirect_to results_elections_path(@election), notice: "Vote was successfully registered."
     else
-      redirect_to root_path, alert: "Unable to register vote."
+      redirect_to @election, alert: "Unable to register vote."
     end
   end
 

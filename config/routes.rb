@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :elections, only: [ :show, :new, :create ]
+  resources :elections, only: [ :show, :new, :create ] do
+    collection do
+      get "/:id/results", action: :results, as: :results
+    end
+  end
   resources :votes, only: [ :create ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
