@@ -8,4 +8,8 @@
 </p>
 
 <%= render @candidates %>
-<%= link_to "Go vote", new_election_vote_path(@election) %>
+
+<div>
+  <%= link_to "Go vote", new_election_vote_path(@election) %>
+  <%= link_to "New election", new_election_path %>
+</div>
