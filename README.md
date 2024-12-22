@@ -1,24 +1,41 @@
-# README
+# Elections
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple election project
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- [x] Create elections
+- [x] Vote
+- [x] See results in graph form
 
-* System dependencies
+## Starting
 
-* Configuration
+### Prerequisites
 
-* Database creation
+- Git
+- Ruby 3.3.6
+- Bundler
+- Docker
 
-* Database initialization
+### Running
 
-* How to run the test suite
+```sh
+git clone https://github.com/AlvesLuis0/elections
+cd elections
+docker compose up -d
+bundle install
+rails db:prepare
+rails server
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Technologies
 
-* Deployment instructions
+- Ruby on Rails
+- Docker
+- Postgresql
 
-* ...
+## Learnings
+
+- How to fix N+1 queries with **Bullet**
+- How to use charts with **Chartkick**
+- How to create nested and dynamic forms with **Rails Nested Form**
