@@ -9,6 +9,8 @@
 
 <%= render @election.candidates %>
 
+<%= bar_chart @election.results %>
+
 <div>
   <%= link_to "Go vote", new_election_vote_path(@election) %>
   <%= link_to "New election", new_election_path %>

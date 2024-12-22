@@ -7,6 +7,10 @@ class Election < ApplicationRecord
   validate :must_have_at_least_two_candidates
   validate :must_have_unique_candidates
 
+  def results
+    candidates.joins(:votes).group("candidates.name").count
+  end
+
 private
   def must_have_at_least_two_candidates
     if candidates.length < 2
