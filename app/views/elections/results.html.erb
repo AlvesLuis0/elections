@@ -4,10 +4,10 @@
 
 <p>
   Total votes:
-  <%= @election.votes_count %>
+  <%= @election.votes.count %>
 </p>
 
-<%= render @candidates %>
+<%= render @election.candidates %>
 
 <div>
   <%= link_to "Go vote", new_election_vote_path(@election) %>

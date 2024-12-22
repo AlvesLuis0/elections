@@ -1,13 +1,13 @@
 class VotesController < ApplicationController
-  before_action :set_election_and_candidates, only: [ :new, :create ]
-
   # GET /:uuid
   def new
     @vote = Vote.new
+    @election = Election.includes(:candidates).find(params.expect(:election_id))
   end
 
   # POST /votes
   def create
+    @election = Election.find(params.expect(:election_id))
     @vote = Vote.new(vote_params)
 
     if @vote.save
@@ -18,12 +18,6 @@ class VotesController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_election_and_candidates
-    @election = Election.find(params.expect(:election_id))
-    @candidates = @election.candidates
-  end
-
   # Only allow a list of trusted parameters through.
   def vote_params
     params.expect(vote: [ :candidate_id ])

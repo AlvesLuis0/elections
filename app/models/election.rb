@@ -1,18 +1,15 @@
 class Election < ApplicationRecord
   has_many :candidates, -> { order :name }, dependent: :destroy
+  has_many :votes, through: :candidates
   accepts_nested_attributes_for :candidates
 
   validates :title, presence: true
   validate :must_have_at_least_two_candidates
   validate :must_have_unique_candidates
 
-  def votes_count
-    Vote.joins(:candidate).where(candidate: { election_id: id }).count
-  end
-
 private
   def must_have_at_least_two_candidates
-    if candidates.size < 2
+    if candidates.length < 2
       errors.add(:candidates, "must have at least two associated")
     end
   end
