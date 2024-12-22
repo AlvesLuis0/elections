@@ -8,6 +8,10 @@ A simple election project
 - [x] Vote
 - [x] See results in graph form
 
+![New election](/images/new.png)
+![Vote](/images/vote.png)
+![Results](/images/results.png)
+
 ## Starting
 
 ### Prerequisites
