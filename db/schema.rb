@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_20_222825) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_23_203334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -25,6 +25,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_20_222825) do
   create_table "elections", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.text "description"
+    t.date "closing_date"
+    t.index ["closing_date"], name: "index_elections_on_closing_date"
     t.index ["id"], name: "index_elections_on_id"
   end
 

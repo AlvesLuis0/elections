@@ -4,11 +4,16 @@ class Election < ApplicationRecord
   accepts_nested_attributes_for :candidates
 
   validates :title, presence: true
+  validates :closing_date, comparison: { greater_than_or_equal_to: Date.today, message: "must be today or in the future" }, if: -> { closing_date.present? }
   validate :must_have_at_least_two_candidates
   validate :must_have_unique_candidates
 
   def results
     candidates.joins(:votes).group("candidates.name").count
+  end
+
+  def closed?
+    closing_date.present? && closing_date.past?
   end
 
 private

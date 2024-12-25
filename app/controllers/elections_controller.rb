@@ -30,6 +30,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def election_params
-    params.expect(election: [ :title, :description, candidates_attributes: [ [ :name ] ] ])
+    params.expect(election: [ :title, :description, :closing_date, candidates_attributes: [ [ :name ] ] ])
   end
 end
