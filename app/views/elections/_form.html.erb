@@ -11,6 +11,11 @@
     <%= form.textarea :description %>
   </div>
 
+  <div>
+    <%= form.label :closing_date, style: "display: block" %>
+    <%= form.date_field :closing_date, min: Date.today %>
+  </div>
+
   <template data-nested-form-target="template">
     <%= form.fields_for :candidates, Candidate.new, child_index: 'NEW_RECORD' do |candidate_fields| %>
       <%= render "candidates/form", form: candidate_fields %>
