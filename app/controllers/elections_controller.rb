@@ -20,6 +20,11 @@ class ElectionsController < ApplicationController
 
   # GET /elections/:uuid/results
   def results
+    if @election.closed?
+      render :results
+    else
+      redirect_to new_election_vote_path(@election), alert: "The results will only be released after the closing date."
+    end
   end
 
 private
