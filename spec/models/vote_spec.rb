@@ -19,5 +19,10 @@ RSpec.describe Vote, type: :model do
       expect(vote).not_to be_valid
       expect(vote.errors[:election]).to include('must be open')
     end
+
+    it 'is valid with' do
+      vote.election.update(closing_date: nil)
+      expect(vote).to be_valid
+    end
   end
 end
