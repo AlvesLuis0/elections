@@ -12,8 +12,12 @@ class Election < ApplicationRecord
     candidates.joins(:votes).group("candidates.name").count
   end
 
-  def closed?
-    closing_date.present? && closing_date.past?
+  def can_vote?
+    closing_date.nil? || !closing_date.past?
+  end
+
+  def can_see_results?
+    closing_date.nil? || closing_date.past?
   end
 
 private

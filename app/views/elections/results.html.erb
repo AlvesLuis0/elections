@@ -13,4 +13,7 @@
 
 <div>
   <%= link_to "New election", new_election_path %>
+  <% if @election.can_vote? %>
+    <%= link_to "Go vote", new_election_vote_path(@election) %>
+  <% end %>
 </div>

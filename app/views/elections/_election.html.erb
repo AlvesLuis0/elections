@@ -8,11 +8,7 @@
 
 <% if election.closing_date.present? %>
   <p>
-    <% if election.closed? %>
-      Voting is closed since
-    <% else %>
-      Voting will be open until
-    <% end %>
+    Voting is closed since
     <%= election.closing_date %>
   </p>
 <% end %>
