@@ -13,7 +13,7 @@ class VotesController < ApplicationController
     @vote = Vote.new(vote_params)
 
     if @vote.save
-      redirect_to results_elections_path(@election), notice: "Vote was successfully registered."
+      redirect_to new_election_vote_path(@election), notice: "Vote was successfully registered."
     else
       render :new, status: :unprocessable_entity
     end

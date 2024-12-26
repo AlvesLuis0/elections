@@ -12,8 +12,5 @@
 <%= bar_chart @election.results %>
 
 <div>
-  <% unless @election.closed? %>
-    <%= link_to "Go vote", new_election_vote_path(@election) %>
-  <% end %>
   <%= link_to "New election", new_election_path %>
 </div>
