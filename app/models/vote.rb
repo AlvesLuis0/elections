@@ -6,7 +6,7 @@ class Vote < ApplicationRecord
 
 private
   def must_have_open_election
-    if election.closed?
+    if election&.closing_date.present? && !election&.can_vote?
       errors.add(:election, "must be open")
     end
   end

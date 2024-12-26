@@ -2,14 +2,14 @@ class VotesController < ApplicationController
   # GET /:uuid
   def new
     @election = Election.includes(:candidates).find(params.expect(:election_id))
-    redirect_if_closed(@election)
+    redirect_if_cannot_vote(@election)
     @vote = Vote.new
   end
 
   # POST /votes
   def create
     @election = Election.find(params.expect(:election_id))
-    redirect_if_closed(@election)
+    redirect_if_cannot_vote(@election)
     @vote = Vote.new(vote_params)
 
     if @vote.save
@@ -25,8 +25,8 @@ class VotesController < ApplicationController
     params.expect(vote: [ :candidate_id ])
   end
 
-  def redirect_if_closed(election)
-    if election.closed?
+  def redirect_if_cannot_vote(election)
+    unless election.can_vote?
       redirect_to results_elections_path(election), alert: "This election is closed."
     end
   end

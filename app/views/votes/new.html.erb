@@ -5,4 +5,7 @@
 
 <div>
   <%= link_to "New election", new_election_path %>
+  <% if @election.can_see_results? %>
+    <%= link_to "See results", results_elections_path(@election) %>
+  <% end %>
 </div>
