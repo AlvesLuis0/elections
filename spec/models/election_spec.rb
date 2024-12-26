@@ -42,15 +42,24 @@ RSpec.describe Election, type: :model do
       expect(election.results).to eq({ 'Candidate 1' => 1, 'Candidate 2' => 2 })
     end
 
-    it 'returns true if closed' do
-      election = Election.new(valid_attributes.merge(closing_date: Date.yesterday, candidates: [ candidate1, candidate2 ]))
-      allow(election).to receive(:closing_date).and_return(Date.yesterday)
-      expect(election.closed?).to be true
+    it 'returns true if voting is allowed' do
+      election = Election.new(valid_attributes.merge(closing_date: Date.tomorrow, candidates: [ candidate1, candidate2 ]))
+      expect(election.can_vote?).to be true
     end
 
-    it 'returns false if not closed' do
+    it 'returns false if voting is not allowed' do
+      election = Election.new(valid_attributes.merge(closing_date: Date.yesterday, candidates: [ candidate1, candidate2 ]))
+      expect(election.can_vote?).to be false
+    end
+
+    it 'returns true if results can be seen' do
+      election = Election.new(valid_attributes.merge(closing_date: Date.yesterday, candidates: [ candidate1, candidate2 ]))
+      expect(election.can_see_results?).to be true
+    end
+
+    it 'returns false if results cannot be seen' do
       election = Election.new(valid_attributes.merge(closing_date: Date.tomorrow, candidates: [ candidate1, candidate2 ]))
-      expect(election.closed?).to be false
+      expect(election.can_see_results?).to be false
     end
   end
 end
