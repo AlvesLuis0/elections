@@ -26,7 +26,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_23_203334) do
     t.string "title"
     t.text "description"
     t.date "closing_date"
-    t.index ["closing_date"], name: "index_elections_on_closing_date"
     t.index ["id"], name: "index_elections_on_id"
   end
 
