@@ -2,6 +2,8 @@
 
 A simple election project
 
+[See the changelog](/CHANGELOG.md)
+
 ## Features
 
 - [x] Create elections
