@@ -43,3 +43,5 @@ rails server
 - How to fix N+1 queries with **Bullet**
 - How to use charts with **Chartkick**
 - How to create nested and dynamic forms with **Rails Nested Form**
+- How to create tests with **RSpec**
+- How to manage **Github Workflows**
