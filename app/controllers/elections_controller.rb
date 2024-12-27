@@ -4,7 +4,7 @@ class ElectionsController < ApplicationController
   # GET /elections/new
   def new
     @election = Election.new
-    @election.candidates.build
+    2.times { @election.candidates.build }
   end
 
   # POST /elections
